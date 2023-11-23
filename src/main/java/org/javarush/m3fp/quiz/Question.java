@@ -25,7 +25,6 @@ public class Question {
         return correctAnswer;
     }
     public boolean checkAnswer(Question question, String userAnswer) {
-        // Метод для проверки ответа пользователя на вопрос
         return userAnswer.equals(question.getCorrectAnswer());
     }
 }

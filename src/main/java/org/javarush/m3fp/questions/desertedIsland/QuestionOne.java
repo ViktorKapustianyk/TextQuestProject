@@ -14,8 +14,4 @@ public class QuestionOne implements QuestionFactory {
     public Question createQuestion() {
         return new Question(question, Arrays.asList(correctAnswer, answer), correctAnswer);
     }
-//    public boolean checkAnswer(Question question, String userAnswer) {
-//        // Метод для проверки ответа пользователя на вопрос
-//        return userAnswer.equals(question.getCorrectAnswer());
-//    }
 }

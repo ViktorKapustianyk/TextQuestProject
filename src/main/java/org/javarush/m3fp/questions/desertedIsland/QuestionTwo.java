@@ -13,8 +13,4 @@ public class QuestionTwo implements QuestionFactory {
     public Question createQuestion() {
         return new Question(question, Arrays.asList(answer, correctAnswer), correctAnswer);
     }
-//    public boolean checkAnswer(Question question, String userAnswer) {
-//        // Метод для проверки ответа пользователя на вопрос
-//        return userAnswer.equals(question.getCorrectAnswer());
-//    }
 }

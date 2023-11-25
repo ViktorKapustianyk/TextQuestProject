@@ -38,9 +38,28 @@ public class StartQuestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         session.setAttribute("questionRepository", getServletContext().getAttribute("questionRepository"));
+        // Отримуємо поточні дані гравця та кількість зіграних ігор з сесії
+        String playerName = (String) session.getAttribute("playerName");
+        Integer gamesPlayed = (Integer) session.getAttribute("gamesPlayed");
+
+// Проверка на null, якщо це перший запуск гри
+        if (playerName == null) {
+            // Оприділяємо ім'я гравця (може вказати користувач)
+            playerName = request.getParameter("playerName");
+            session.setAttribute("playerName", playerName);
+        }
+
+// Проверка на null, якщо це перший запуск гри
+        if (gamesPlayed == null) {
+            // Ініціалізуємо кількість зіграних ігор
+            gamesPlayed = 1;
+            session.setAttribute("gamesPlayed", gamesPlayed);
+        }
+
+        String restartParam = request.getParameter("restart");
 
         // Проверяем, был ли запрос на рестарт
-        if (request.getParameter("restart") != null) {
+        if (restartParam != null && "true".equals(request.getParameter("restart"))) {
             // Если запрос на рестарт, сбрасываем индекс и инициализируем вопрос заново
             questionRepository.resetIndex();
         }
@@ -58,7 +77,6 @@ public class StartQuestServlet extends HttpServlet {
             // Передаем вопрос и варианты ответов в JSP
             request.setAttribute("currentQuestion", currentQuestion);
             request.setAttribute("options", options);
-
 
             // Перенаправляем на JSP для отображения первого вопроса
             getServletContext().getRequestDispatcher("/startQuest.jsp").forward(request, response);

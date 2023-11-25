@@ -31,6 +31,15 @@ public class LogicQuestServlet extends HttpServlet {
             // Если ответ правильный, переходим к следующей фабрике (следующему вопросу)
             switchToNextQuestion(session, questionRepository, request, response);
         } else {
+            // Отримуємо поточні дані гравця та кількість зіграних ігор з сесії
+            String playerName = (String) session.getAttribute("playerName");
+            int gamesPlayed = (int) session.getAttribute("gamesPlayed");
+            // Оновлюємо кількість зіграних ігор
+            gamesPlayed++;
+            // Оновлюємо інформацію про гравця та кількість зіграних ігор в сесії
+            session.setAttribute("playerName", playerName);
+            session.setAttribute("gamesPlayed", gamesPlayed);
+
             // Если ответ неверный, перенаправляем на страницу поражения
             response.sendRedirect(session.getServletContext().getContextPath() + "/game-over.jsp");
         }
@@ -55,10 +64,18 @@ public class LogicQuestServlet extends HttpServlet {
             request.setAttribute("currentQuestion", nextQuestion);
             request.setAttribute("options", options);
 
-
             // Перенаправляем на JSP для отображения первого вопроса
             getServletContext().getRequestDispatcher("/startQuest.jsp").forward(request, response);
         } else {
+            // Отримуємо поточні дані гравця та кількість зіграних ігор з сесії
+            String playerName = (String) session.getAttribute("playerName");
+            int gamesPlayed = (int) session.getAttribute("gamesPlayed");
+            // Оновлюємо кількість зіграних ігор
+            gamesPlayed++;
+            // Оновлюємо інформацію про гравця та кількість зіграних ігор в сесії
+            session.setAttribute("playerName", playerName);
+            session.setAttribute("gamesPlayed", gamesPlayed);
+
             // Ваши действия при завершении вопросов (например, перенаправление на страницу завершения теста)
             response.sendRedirect(session.getServletContext().getContextPath() + "/quiz-completed.jsp");
         }

@@ -13,7 +13,6 @@ public class RestartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession(true);
-        req.getSession().invalidate();
         resp.sendRedirect(session.getServletContext().getContextPath() + "/start?restart=true");
     }
 }

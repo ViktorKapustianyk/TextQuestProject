@@ -33,7 +33,7 @@
             </p>
 
             <!-- Добавлено поле для ввода имени -->
-            <form action="start" method="post" class="form-inline">
+            <form action="start" method="get" class="form-inline">
                 <div class="form-group mx-sm-3 mb-2">
                     <label for="playerName" class="sr-only">Type your Name:</label>
                     <input type="text" class="form-control" id="playerName" name="playerName" placeholder="Type your Name" required>

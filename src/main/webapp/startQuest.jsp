@@ -37,6 +37,14 @@
             </form>
         </blockquote>
     </div>
+    <div class="card-header">
+        <h3>Player Information</h3>
+
+        <c:if test="${not empty sessionScope.playerName}">
+            <p>Welcome, ${sessionScope.playerName}!</p>
+            <p>Games Played: ${sessionScope.gamesPlayed}</p>
+        </c:if>
+    </div>
 
 </div>
 

@@ -14,6 +14,14 @@
     <link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <script src="<c:url value="/static/jquery-3.6.0.min.js"/>"></script>
+
+    <style>
+        .full-width-image {
+            width: 100%;
+            margin-bottom: 20px; /* Додайте відступ, якщо потрібно */
+        }
+    </style>
+
 </head>
 <body>
 
@@ -21,6 +29,9 @@
     <div class="card-header">
         <h1>You lost! Wild animals ate you!</h1>
     </div>
+
+    <img src="main/resources/images/32973.jpg" alt="Escaping from Island" class="full-width-image">
+
     <div class="card-body">
         <blockquote class="blockquote mb-0">
             <form action="restart" method="post">

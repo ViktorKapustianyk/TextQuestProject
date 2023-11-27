@@ -1,6 +1,9 @@
 package org.javarush.m3fp.quiz;
 
 import java.util.List;
+import java.util.Objects;
+
+import static java.util.Objects.isNull;
 
 public class Question {
     private final String question;
@@ -8,6 +11,24 @@ public class Question {
     private final String correctAnswer;
 
     public Question(String question, List<String> answers, String correctAnswer) {
+        if (isNull(question)) {
+            throw new IllegalArgumentException("Question cannot be null.");
+        } else if (question.isBlank()) {
+            throw new IllegalArgumentException("Question cannot be blank.");
+        }
+        if (isNull(answers)) {
+            throw new IllegalArgumentException("Answers cannot be null.");
+        } else if (answers.stream().anyMatch(Objects::isNull)) {
+            throw new IllegalArgumentException("Answers cannot contain null elements.");
+        }
+        if (isNull(correctAnswer)) {
+            throw new IllegalArgumentException("CorrectAnswer cannot be null.");
+        } else if (correctAnswer.isBlank()) {
+            throw new IllegalArgumentException("CorrectAnswer cannot be blank.");
+        }
+
+
+
         this.question = question;
         this.answers = answers;
         this.correctAnswer = correctAnswer;

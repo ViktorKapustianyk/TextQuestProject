@@ -27,8 +27,6 @@ public class Question {
             throw new IllegalArgumentException("CorrectAnswer cannot be blank.");
         }
 
-
-
         this.question = question;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
@@ -47,5 +45,18 @@ public class Question {
     }
     public boolean checkAnswer(Question question, String userAnswer) {
         return userAnswer.equals(question.getCorrectAnswer());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Question question1 = (Question) o;
+        return Objects.equals(question, question1.question) && Objects.equals(answers, question1.answers) && Objects.equals(correctAnswer, question1.correctAnswer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(question, answers, correctAnswer);
     }
 }

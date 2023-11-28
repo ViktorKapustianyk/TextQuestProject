@@ -5,8 +5,8 @@ import org.javarush.m3fp.quiz.Question;
 import java.util.*;
 
 public class QuestionRepository {
-    private List<Question> questionList;
-    private int currentIndex;
+    protected List<Question> questionList;
+    protected int currentIndex;
 
     public QuestionRepository() {
         this.questionList = new ArrayList<>();
